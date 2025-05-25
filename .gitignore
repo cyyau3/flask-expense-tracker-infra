@@ -1,4 +1,15 @@
+# Virtual Environment
 venv/
+
+# Python Artifacts
 __pycache__/
 *.pyc
+
+# SQLite DB
 expenses.db
+
+# Env files
+.env
+
+# PyCharm config
+.idea/

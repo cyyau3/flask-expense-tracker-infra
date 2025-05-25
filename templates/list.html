@@ -33,7 +33,7 @@
   </div>
 </form>
 <div class="d-flex justify-content-between align-items-center mb-3">
-  <div><strong>Showing {{ expenses|length }} expenses</strong></div>
+  <div><strong>Showing {{ expenses|length }} expense{{ 's' if expenses|length != 1 else '' }}</strong></div>
   <div><strong>Total spent: ${{ "%.2f"|format(total_amount) }}</strong></div>
 </div>
 <table class="table table-striped table-bordered">
