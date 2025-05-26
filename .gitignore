@@ -12,4 +12,4 @@ expenses.db
 .env
 
 # PyCharm config
-.idea/
+.idea/.env
