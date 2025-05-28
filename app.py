@@ -19,7 +19,6 @@ db.init_app(app)
 
 @app.route('/')
 def index():
-    print("reached index route")
     category = request.args.get('category')
     payment_method = request.args.get('payment_method')
     who = request.args.get('who')
@@ -96,4 +95,3 @@ def delete_expense(id):
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-    print("running...")
