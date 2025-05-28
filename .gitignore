@@ -1,5 +1,6 @@
 # Virtual Environment
 venv/
+.venv/
 
 # Python Artifacts
 __pycache__/
@@ -12,4 +13,10 @@ expenses.db
 .env
 
 # PyCharm config
-.idea/.env
+.idea/
+
+# Log files
+app.log
+
+# Others
+.DS_Store

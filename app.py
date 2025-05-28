@@ -17,9 +17,11 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
 db.init_app(app)
 
+
 @app.before_request
 def create_tables():
     db.create_all()
+
 
 @app.route('/')
 def index():
@@ -51,6 +53,7 @@ def index():
         'end_date': end_date
     }, total_amount=total_amount)
 
+
 @app.route('/add', methods=['GET', 'POST'])
 def add_expense():
     if request.method == 'POST':
@@ -69,6 +72,7 @@ def add_expense():
         return redirect('/')
     return render_template('add.html')
 
+
 @app.route('/edit/<int:id>', methods=['GET', 'POST'])
 def update_expenses(id):
     expense = Expense.query.get_or_404(id)
@@ -84,6 +88,7 @@ def update_expenses(id):
         logging.info(f"Updated expense ID {id} with data: {request.form}")
         return redirect('/')
     return render_template('edit.html', expense=expense)
+
 
 @app.route('/delete/<int:id>')
 def delete_expense(id):
