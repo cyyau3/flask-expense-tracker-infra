@@ -60,9 +60,14 @@ def add_expense():
             payment_method=request.form['payment_method'],
             who=request.form['who']
         )
-        db.session.add(new_expense)
-        db.session.commit()
-        logging.info(f"Added new expense: {request.form}")
+        try:
+            db.session.add(new_expense)
+            db.session.commit()
+            logging.info(f"Added new expense: {request.form}")
+        except Exception as e:
+            db.session.rollback()
+            logging.error(f"Error adding expense: {e}")
+            return "An error occurred while adding the expense.", 500
         return redirect('/')
     return render_template('add.html')
 
@@ -78,8 +83,13 @@ def update_expenses(id):
         expense.description = request.form['description']
         expense.payment_method = request.form['payment_method']
         expense.who = request.form['who']
-        db.session.commit()
-        logging.info(f"Updated expense ID {id} with data: {request.form}")
+        try:
+            db.session.commit()
+            logging.info(f"Updated expense ID {id} with data: {request.form}")
+        except Exception as e:
+            db.session.rollback()
+            logging.error(f"Error updating expense ID {id}: {e}")
+            return "An error occurred while updating the expense.", 500
         return redirect('/')
     return render_template('edit.html', expense=expense)
 
@@ -87,9 +97,14 @@ def update_expenses(id):
 @app.route('/delete/<int:id>')
 def delete_expense(id):
     expense = Expense.query.get_or_404(id)
-    db.session.delete(expense)
-    db.session.commit()
-    logging.info(f"Deleted expense ID {id}")
+    try:
+        db.session.delete(expense)
+        db.session.commit()
+        logging.info(f"Deleted expense ID {id}")
+    except Exception as e:
+        db.session.rollback()
+        logging.error(f"Error deleting expense ID {id}: {e}")
+        return "An error occurred while deleting the expense.", 500
     return redirect('/')
 
 if __name__ == "__main__":
