@@ -20,3 +20,4 @@ app.log
 
 # Others
 .DS_Store
+flask-expense-tracker.git/
