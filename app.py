@@ -3,6 +3,13 @@ from models import db, Expense
 from datetime import datetime
 from dotenv import load_dotenv
 import os
+import logging
+
+logging.basicConfig(
+    filename='app.log',
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'
+)
 
 load_dotenv()
 
@@ -58,6 +65,7 @@ def add_expense():
         )
         db.session.add(new_expense)
         db.session.commit()
+        logging.info(f"Added new expense: {request.form}")
         return redirect('/')
     return render_template('add.html')
 
@@ -73,6 +81,7 @@ def update_expenses(id):
         expense.payment_method = request.form['payment_method']
         expense.who = request.form['who']
         db.session.commit()
+        logging.info(f"Updated expense ID {id} with data: {request.form}")
         return redirect('/')
     return render_template('edit.html', expense=expense)
 
@@ -81,4 +90,5 @@ def delete_expense(id):
     expense = Expense.query.get_or_404(id)
     db.session.delete(expense)
     db.session.commit()
+    logging.info(f"Deleted expense ID {id}")
     return redirect('/')
