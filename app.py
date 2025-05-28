@@ -17,14 +17,9 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
 db.init_app(app)
 
-
-@app.before_request
-def create_tables():
-    db.create_all()
-
-
 @app.route('/')
 def index():
+    print("reached index route")
     category = request.args.get('category')
     payment_method = request.args.get('payment_method')
     who = request.args.get('who')
@@ -97,3 +92,8 @@ def delete_expense(id):
     db.session.commit()
     logging.info(f"Deleted expense ID {id}")
     return redirect('/')
+
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
+    print("running...")
