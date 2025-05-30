@@ -15,7 +15,7 @@ In this phase, I focused on:
 - Logging application activity using **CloudWatch Agent**
 - Managing configuration via a `.env` file and **dotenv**
 
-> ✅ Successfully deployed the app to the cloud with persistent storage and public access via a public IP.
+> ✅ Successfully deployed the app to the cloud with persistent storage and public access via a public IP.  
 > 🔐 While a custom domain and HTTPS will be added in future phases, the current setup prioritizes security within budget limits (e.g., private RDS, strict security groups).
 
 ---
