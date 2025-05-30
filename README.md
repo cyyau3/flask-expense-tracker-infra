@@ -103,11 +103,11 @@ This section outlines how I deployed the Flask Expense Tracker App to AWS using 
 
 In the next phase, I’ll focus on strengthening the project’s architecture, automation, and cloud-native integrations:
 
-- ✅ **Containerization** – Package the app with Docker for portability and easier deployment
-- ✅ **Infrastructure as Code** – Use Terraform to automate provisioning of AWS resources
-- ✅ **CI/CD Pipeline** – Implement GitHub Actions to automate build and deployment
-- ✅ **Dashboard & Analytics** – Visualize expenses with charts and summaries
-- ✅ **AI Feature (OCR)** – Integrate AWS Textract to extract text from receipt images
-- ✅ **Advanced Monitoring** – Set up CloudWatch metrics dashboards and alerting
+- **Containerization** – Package the app with Docker for portability and easier deployment
+- **Infrastructure as Code** – Use Terraform to automate provisioning of AWS resources
+- **CI/CD Pipeline** – Implement GitHub Actions to automate build and deployment
+- **Dashboard & Analytics** – Visualize expenses with charts and summaries
+- **AI Feature (OCR)** – Integrate AWS Textract to extract text from receipt images
+- **Advanced Monitoring** – Set up CloudWatch metrics dashboards and alerting
 
 > These enhancements will further align the project with real-world cloud architecture and DevOps workflows.
