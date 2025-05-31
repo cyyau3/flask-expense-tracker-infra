@@ -29,9 +29,17 @@ In this phase, I focused on:
 - AWS CloudWatch (logging)
 
 ---
+### Cloud Architecture Diagram
 
-### 📸 Screenshot
-Coming soon.
+![CloudDiagram](https://github.com/user-attachments/assets/ba1e2b3e-36fa-415f-b54e-7c72fe1e384d)
+
+---
+
+### 📸 Demo Video
+
+[Watch the Video on YouTube](https://youtu.be/bfRccKXN7mY)
+
+This 2-minute walkthrough demonstrates the app running on AWS EC2 + RDS, including architecture, logging, and live functionality.
 
 ---
 
