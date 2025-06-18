@@ -92,7 +92,8 @@ cd flask-expense-tracker
      db_password    = "your-db-password"
      your_ip_cidr   = "YOUR_PUBLIC_IP/32"
      ```
-> Use terraform.tfvars.example to create your own terraform.tfvars file with real values. Do not commit the real file.
+> Use `terraform.tfvars.example` to create your own `terraform.tfvars` file with real values.
+> Do not commit the real file.
 
    - Deploy:
      ```bash
