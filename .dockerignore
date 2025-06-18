@@ -1,0 +1,33 @@
+# Virtual Environment
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# SQLite DB
+expenses.db
+
+# Logs
+*.log
+
+# Env file
+.env
+
+# Git and IDE
+.git/
+.gitignore
+.idea/
+.vscode/
+.idea/
+
+# macOS metadata
+.DS_Store
+
+# Other unrelated files
+test_secret.py
+ecs-task-def.json
+ecs-trust-policy.json

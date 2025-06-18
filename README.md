@@ -1,121 +1,117 @@
-# 💸 Expense Tracker App – Cloud Deployed
-This is a cloud-deployed expense tracker web application built using **Flask**, hosted on **AWS EC2**, and connected to a **PostgreSQL RDS** database. 
+# Expense Tracker App – Production Infrastructure with Terraform & ECS
 
-It allows users to organize expenses through a simple and clean web interface, featuring:
-- Add, edit, and delete expenses
-- Filter by category, payment method, user, and date range
-- View summary totals
+This repo builds on the [Phase 1 deployment](https://github.com/cyyau3/flask-expense-tracker), which launched a Flask-based expense tracker on AWS using EC2 and RDS via the AWS Console.
 
-### 🚀 Phase 1: Cloud Deployment
-
-In this phase, I focused on:
-- Setting up a secure and scalable cloud environment using **AWS VPC**
-- Deploying the Flask app on an **EC2 instance** using **Gunicorn** and **Nginx**
-- Storing data on a **PostgreSQL RDS instance** in a private subnet
-- Logging application activity using **CloudWatch Agent**
-- Managing configuration via a `.env` file and **dotenv**
-
-> ✅ Successfully deployed the app to the cloud with persistent storage and public access via a public IP.  
-> 🔐 While a custom domain and HTTPS will be added in future phases, the current setup prioritizes security within budget limits (e.g., private RDS, strict security groups).
+In **Phase 2**, the project was restructured into a **modular, production-ready infrastructure** using **Terraform**, **Docker**, and **AWS ECS (Fargate)** — highlighting cloud-native design, scalability, and Infrastructure as Code best practices.
 
 ---
 
-### 🧱 Tech Stack
-- Python (Flask)
-- PostgreSQL (AWS RDS)
-- AWS EC2, VPC, Subnets, Security Groups
-- Gunicorn + Nginx (for production WSGI setup)
-- `python-dotenv` (.env configuration)
-- AWS CloudWatch (logging)
+## Key Features
 
----
-### Cloud Architecture Diagram
-
-![CloudDiagram](https://github.com/user-attachments/assets/ba1e2b3e-36fa-415f-b54e-7c72fe1e384d)
+- **Flask + PostgreSQL** – Python web backend with persistent storage
+- **Docker + Amazon ECR** – Containerized app with remote image hosting
+- **Terraform (modular)** – Infrastructure as Code used to automate provisioning of networking infrastructure (VPC, subnets, NAT Gateway, security groups)
+- **ECS Fargate + ALB, ECR, Route 53, ACM** – Application deployment, container registry, custom domain, and SSL certificate were configured manually via AWS Console for learning and demonstration purposes
+- **VPC + NAT Gateway** – Isolated subnets and controlled internet routing for secure architecture
+- **IAM + Secrets Manager** – Secure credential management and execution role handling
+- **CloudWatch** – Log and metric streaming for monitoring and observability
 
 ---
 
-### 📸 Demo Video
+## What’s New in Phase 2
 
-[Watch the Video on YouTube](https://youtu.be/bfRccKXN7mY)
-
-This 2-minute walkthrough demonstrates the app running on AWS EC2 + RDS, including architecture, logging, and live functionality.
+- Rebuilt infrastructure with **modular Terraform** (network, compute, DB)
+- Containerized the Flask app and stored it in **Amazon ECR**
+- Deployed the app using **ECS Fargate** for managed scalability
+- Configured **Application Load Balancer (ALB)** for public access
+- Pulled secrets securely via **AWS Secrets Manager**
+- Enforced least-privilege access using **IAM roles**
+- Streamlined networking with reusable **VPC module** and **NAT Gateway**
 
 ---
 
-### 🛠️ How to Run Locally
-```bash
-git clone https://github.com/yourusername/expense-tracker-app.git
-cd expense-tracker-app
-pip install -r requirements.txt
-python app.py
+## Folder Structure
+```
+.
+├── static/
+├── templates/
+├── terraform/
+├── venv/
+├── .dockerignore
+├── .gitignore
+├── .env
+├── app.py
+├── Dockerfile
+├── models.py
+├── README.md
+└── requirements.txt
 ```
 
 ---
 
-### ☁️ Deployment Steps (AWS)
+## Cloud Architecture Diagram
 
-This section outlines how I deployed the Flask Expense Tracker App to AWS using EC2 and RDS, with security, scalability, and observability.
+TBU
 
-#### 1. 🧱 Infrastructure Setup (VPC, Subnets, Security Groups)
-- Created a **custom VPC** with:
-  - 1 public subnet (for EC2 instance)
-  - 1 private subnet (for RDS instance)
-- Configured **Internet Gateway** and routing tables
-- Set up **Security Groups**:
-  - EC2 SG: allows SSH (22), HTTP (80), and app port from anywhere
-  - RDS SG: only allows inbound traffic from EC2 private IP range
+---
 
-#### 2. 💻 EC2 Instance Setup
-- Launched an **Linux EC2 instance** in the public subnet
-- Installed:
-  - Python, pip, `virtualenv`
-  - Git, PostgreSQL client
-- Cloned GitHub repo and set up Python virtual environment
-- Installed app dependencies with:
-  ```bash
-  pip install -r requirements.txt
-  ```
+## Demo Video
 
-#### 3. 🐍 Environment Configuration
-- Created a .env file to store environment variables (e.g. DATABASE_URI, FLASK_ENV)
-- Used python-dotenv to load these variables into the Flask app
+TBU
 
-#### 4. 🔧 App Server & Web Server
-- Installed Gunicorn to run Flask in production mode:
-    ```bash
-    gunicorn -w 4 app:app
-    ```
-- Installed and configured Nginx as a reverse proxy to forward traffic to Gunicorn
-- Set up Nginx to serve HTTP on port 80
+---
 
-#### 5. 🗄️ RDS Setup (PostgreSQL)
-- Created a PostgreSQL RDS instance in the private subnet
-- Set up database schema and tested connection from EC2 instance
-- Verified that all app data is being stored in RDS
+## How to Deploy
 
-#### 6. 📊 Logging & Monitoring
-- Installed and configured CloudWatch Agent to stream:
-  - Gunicorn logs
-	- System metrics (CPU, memory)
+> **Note:** In this phase, the networking infrastructure (VPC, subnets, NAT Gateway, security groups) is provisioned using Terraform. The ECS Fargate service, ECR repository, Application Load Balancer, Route 53, and ACM certificate are configured manually via the AWS Console for learning and demonstration purposes.
 
-#### 7. 🔐 Security Considerations
-- RDS placed in private subnet — not exposed to the internet
-- EC2 access limited to my IP (for SSH)
-- Sensitive credentials stored in .env, not committed to GitHub
-- HTTPS and domain name will be configured in Phase 2 to reduce initial hosting cost
+1. **Clone the repository**
+```bash
+git clone https://github.com/cyyau3/flask-expense-tracker.git
+cd flask-expense-tracker
+```
 
- ---
+2. **Provision networking infrastructure with Terraform**
+   - Create a `terraform.tfvars` file in the `terraform/` directory (based on the example):
+     ```hcl
+     aws_region     = "your-aws-region"
+     key_name       = "your-key-name"
+     db_password    = "your-db-password"
+     your_ip_cidr   = "YOUR_PUBLIC_IP/32"
+     ```
+     > Use terraform.tfvars.example to create your own terraform.tfvars file with real values. Do not commit the real file.
 
-### 🔜 Next Phase: Features & Cloud Engineering Enhancements
+   - Deploy:
+     ```bash
+     cd terraform/
+     terraform init
+     terraform apply
+     ```
 
-In the next phase, I’ll focus on strengthening the project’s architecture, automation, and cloud-native integrations:
+3. **Build and push Docker image to ECR**
+   - Create an ECR repository via the AWS Console (if not already done)
+   - Build and push your Docker image:
+     ```bash
+     docker build -t flask-expense-tracker .
+     docker tag flask-expense-tracker:latest <your_ecr_repo_uri>
+     docker push <your_ecr_repo_uri>
+     ```
 
-- **Containerization** – Package the app with Docker for portability and easier deployment
-- **Infrastructure as Code** – Use Terraform to automate provisioning of AWS resources
-- **CI/CD Pipeline** – Implement GitHub Actions to automate build and deployment
-- **Dashboard & Analytics** – Visualize expenses with charts and summaries
-- **AI Feature (OCR)** – Integrate AWS Textract to extract text from receipt images
-- **Advanced Monitoring** – Set up CloudWatch metrics dashboards and alerting
+4. **Manually configure ECS Fargate, ALB, and Route 53 using AWS Console**
+   - Set up an ECS Fargate service, referencing your ECR image and the networking resources created by Terraform
+   - Create or configure an Application Load Balancer for public access
+   - Register your service with Route 53 and enable HTTPS with ACM
 
-> These enhancements will further align the project with real-world cloud architecture and DevOps workflows.
+5. **Access the App**
+   - Once the ECS service is running and the ALB/Route 53 configuration is complete, your app will be accessible via your custom domain.
+
+## Security Practices
+- No credentials committed to source code
+- Secrets pulled securely via AWS Secrets Manager
+- RDS hosted in private subnet
+- EC2/ECS access controlled via IAM roles and Security Groups
+
+## Future Improvements
+- CI/CD Pipeline with Github Actions
+- OCR Receipt Upload using AWS Textract
+- Dashboard & Analytics for expense trends

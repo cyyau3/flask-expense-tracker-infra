@@ -2,8 +2,12 @@ from flask import Flask, render_template, request, redirect
 from models import db, Expense
 from datetime import datetime
 from dotenv import load_dotenv
+from sqlalchemy import inspect
 import os
 import logging
+import boto3
+import json
+from botocore.exceptions import ClientError
 
 logging.basicConfig(
     filename='app.log',
@@ -14,8 +18,41 @@ logging.basicConfig(
 load_dotenv()
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
+
+def get_db_uri_from_secret():
+    try:
+        secret_name = os.environ["AWS_SECRET_NAME"]
+        region_name = os.environ["AWS_REGION"] 
+    except KeyError as e:
+        raise RuntimeError(f"Missing required environment variable: {e}")
+
+    session = boto3.session.Session()
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name
+    )
+
+    try:
+        get_secret_value_response = client.get_secret_value(SecretId=secret_name)
+        logging.info("Successfully fetched DB credentials from Secrets Manager.")
+    except ClientError as e:
+        logging.error(f"Unable to retrieve secret: {e}")
+        raise e
+
+    secret = json.loads(get_secret_value_response['SecretString'])
+    db_uri = f"postgresql://{secret['username']}:{secret['password']}@{secret['host']}:{secret['port']}/{secret['dbname']}"
+    return db_uri
+
+app.config['SQLALCHEMY_DATABASE_URI'] = get_db_uri_from_secret()
 db.init_app(app)
+
+with app.app_context():
+    inspector = inspect(db.engine)
+    if not inspector.has_table("expenses"):
+        print("Creating tables...")
+        db.create_all()
+    else:
+        print("Database tables already exist. Skipping initialization.")
 
 @app.route('/')
 def index():
@@ -106,6 +143,10 @@ def delete_expense(id):
         logging.error(f"Error deleting expense ID {id}: {e}")
         return "An error occurred while deleting the expense.", 500
     return redirect('/')
+
+@app.route('/health')
+def health_check():
+    return "OK", 200
 
 # if __name__ == "__main__":
 #     with app.app_context():

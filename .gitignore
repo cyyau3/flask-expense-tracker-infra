@@ -1,23 +1,34 @@
-# Virtual Environment
+# Virtual Environments
 venv/
-.venv/
 
-# Python Artifacts
-__pycache__/
-*.pyc
-
-# SQLite DB
-expenses.db
-
-# Env files
+# Environment Variables
 .env
 
-# PyCharm config
-.idea/
+# Python Cache and Bytecode
+__pycache__/
+*.pyc
+*.pyo
 
-# Log files
-app.log
+# Local Database (SQLite)
+expenses.db
 
-# Others
+# Logs
+*.log
+
+# Editor and OS Configs
 .DS_Store
-flask-expense-tracker.git/
+.idea/
+.vscode/
+
+# AWS/ECS Infrastructure Files
+ecs-task-def.json
+ecs-trust-policy.json
+
+# Terraform state files
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
+*.tfvars
+
+# Local Test Script
+test_secret.py
