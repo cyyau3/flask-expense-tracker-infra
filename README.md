@@ -64,7 +64,7 @@ In **Phase 2**, the project was restructured into a **modular, production-ready 
 
 ## Cloud Architecture Diagram
 
-![Cloud Project Diagram-P1-Phrase2-160ppi](https://github.com/user-attachments/assets/d5aa2ca0-0e91-4bb9-a5c6-73b9b413123c)
+![Cloud Project Diagram - P1-Phrase2-300ppi](https://github.com/user-attachments/assets/f1767dbe-37df-41ab-aae7-5134d27e2c9a)
 
 ---
 
