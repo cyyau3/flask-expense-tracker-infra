@@ -36,7 +36,20 @@ In **Phase 2**, the project was restructured into a **modular, production-ready 
 ├── static/
 ├── templates/
 ├── terraform/
-├── venv/
+│   ├── main.tf
+│   ├── provider.tf
+│   ├── variables.tf
+│   ├── terraform.tfvars.example
+│   ├── .terraform.lock.hcl
+│   └── modules/
+│       └── vpc/
+│           ├── data.tf
+│           ├── igw.tf
+│           ├── nat.tf
+│           ├── outputs.tf
+│           ├── subnets.tf
+│           ├── variables.tf
+│           └── vpc.tf
 ├── .dockerignore
 ├── .gitignore
 ├── .env
@@ -51,7 +64,7 @@ In **Phase 2**, the project was restructured into a **modular, production-ready 
 
 ## Cloud Architecture Diagram
 
-TBU
+![Cloud Project Diagram-P1-Phrase2-160ppi](https://github.com/user-attachments/assets/d5aa2ca0-0e91-4bb9-a5c6-73b9b413123c)
 
 ---
 
@@ -79,7 +92,7 @@ cd flask-expense-tracker
      db_password    = "your-db-password"
      your_ip_cidr   = "YOUR_PUBLIC_IP/32"
      ```
-     > Use terraform.tfvars.example to create your own terraform.tfvars file with real values. Do not commit the real file.
+> Use terraform.tfvars.example to create your own terraform.tfvars file with real values. Do not commit the real file.
 
    - Deploy:
      ```bash
