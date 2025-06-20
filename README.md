@@ -70,8 +70,7 @@ In **Phase 2**, the project was restructured into a **modular, production-ready 
 
 ## Demo Video
 
-TBU
-
+[![Watch Demo on YouTube](https://github.com/user-attachments/assets/7120e034-7995-41f1-9703-cb6f57ceacc2)](https://youtu.be/WJZAnc1_ZDY)
 ---
 
 ## How to Deploy
