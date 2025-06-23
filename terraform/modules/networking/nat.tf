@@ -1,6 +1,9 @@
 # nat.tf
 # Allocate an Elastic IP for NAT
 resource "aws_eip" "et_modular_nat_eip" {
+    tags = {
+      Name = "et_modular_nat_eip"
+  }
 }
 
 # NAT Gateway in public subnet
@@ -25,6 +28,10 @@ resource "aws_route" "private_nat_route" {
 # route table for private subnets
 resource "aws_route_table" "et_modular_route_table_2" {
   vpc_id = aws_vpc.et_modular_vpc.id
+
+  tags = {
+    Name = "et_modular_private_rt"
+  }
 }
 
 # route table associations for private subnets
