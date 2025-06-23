@@ -70,7 +70,7 @@ In **Phase 2**, the project was restructured into a **modular, production-ready 
 
 ## Demo Video
 
-TBU
+[Watch the demo video](https://youtu.be/WJZAnc1_ZDY)
 
 ---
 
