@@ -46,6 +46,8 @@ module "ecs" {
   listener_rule_arn  = module.alb.alb_listener_https_arn
 
   log_group_name      = module.cloudwatch.log_group_name
+
+  secret_name = module.secretsmanager.secret_name
 }
 
 module "secretsmanager" {

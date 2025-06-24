@@ -8,7 +8,7 @@ resource "aws_ecs_task_definition" "this" {
   family                   = "${var.project_name}-task"
   requires_compatibilities = ["FARGATE"]
   cpu                      = "256"
-  memory                   = "512"
+  memory                   = "1024"
   network_mode             = "awsvpc"
   execution_role_arn       = var.execution_role_arn
   task_role_arn            = var.task_role_arn
@@ -30,6 +30,12 @@ resource "aws_ecs_task_definition" "this" {
           awslogs-stream-prefix = "ecs"
         }
       }
+      environment = [
+        {
+          name = "AWS_SECRET_NAME"
+          value = var.secret_name
+        }
+      ]
     }
   ])
 }

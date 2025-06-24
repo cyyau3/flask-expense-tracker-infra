@@ -19,3 +19,5 @@ variable "log_group_name" {
   type        = string
   description = "Name of the CloudWatch log group for ECS task logging"
 }
+
+variable "secret_name" {}
