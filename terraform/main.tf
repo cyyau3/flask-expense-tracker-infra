@@ -79,6 +79,14 @@ module "rds" {
   db_identifier       = var.db_identifier
 }
 
+module "route53" {
+  source        = "./modules/route53"
+  zone_id       = var.route53_zone_id
+  domain_name   = var.domain_name
+  alb_dns_name  = module.alb.alb_dns_name
+  alb_zone_id   = module.alb.alb_zone_id
+}
+
 module "cloudwatch" {
   source            = "./modules/cloudwatch"
   project_name      = var.project_name

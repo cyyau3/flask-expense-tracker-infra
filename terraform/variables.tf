@@ -130,3 +130,13 @@ variable "ecs_scale_out_cooldown" {
   description = "Cooldown period (in seconds) before scaling out"
   type        = number
 }
+
+variable "route53_zone_id" {
+  description = "The Route 53 hosted zone ID"
+  type        = string
+}
+
+variable "domain_name" {
+  description = "The custom domain name to use (e.g., app.example.com)"
+  type        = string
+}
