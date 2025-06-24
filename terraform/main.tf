@@ -49,15 +49,18 @@ module "ecs" {
   ecr_repo_url        = module.ecr.ecr_repository_url
   execution_role_arn  = module.iam.ecs_task_execution_role_arn
   task_role_arn       = module.iam.ecs_task_role_arn
-
   private_subnet_ids  = module.networking.private_subnet_ids
   security_group_ecs  = module.networking.ecs_sg
   target_group_arn    = module.alb.alb_target_group_arn
   listener_rule_arn  = module.alb.alb_listener_https_arn
-
   log_group_name      = module.cloudwatch.log_group_name
-
   secret_name = module.secretsmanager.secret_name
+
+  ecs_min_capacity         = var.ecs_min_capacity
+  ecs_max_capacity         = var.ecs_max_capacity
+  ecs_scaling_target_value = var.ecs_scaling_target_value
+  ecs_scale_in_cooldown    = var.ecs_scale_in_cooldown
+  ecs_scale_out_cooldown   = var.ecs_scale_out_cooldown
 }
 
 module "rds" {

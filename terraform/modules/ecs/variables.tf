@@ -21,3 +21,28 @@ variable "log_group_name" {
 }
 
 variable "secret_name" {}
+
+variable "ecs_max_capacity" {
+  description = "Maximum number of ECS tasks that can run"
+  type        = number
+}
+
+variable "ecs_min_capacity" {
+  description = "Minimum number of ECS tasks that can run"
+  type        = number
+}
+
+variable "ecs_scaling_target_value" {
+  description = "Target value for ECS service CPU utilization"
+  type        = number
+}
+
+variable "ecs_scale_in_cooldown" {
+  description = "Cooldown time before scale in"
+  type        = number
+}
+
+variable "ecs_scale_out_cooldown" {
+  description = "Cooldown time before scale out"
+  type        = number
+}

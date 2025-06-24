@@ -105,3 +105,28 @@ variable "db_identifier" {
   description = "RDS instance identifier"
   type        = string
 }
+
+variable "ecs_min_capacity" {
+  description = "Minimum number of ECS tasks to run"
+  type        = number
+}
+
+variable "ecs_max_capacity" {
+  description = "Maximum number of ECS tasks to run"
+  type        = number
+}
+
+variable "ecs_scaling_target_value" {
+  description = "Target CPU utilization percentage for scaling"
+  type        = number
+}
+
+variable "ecs_scale_in_cooldown" {
+  description = "Cooldown period (in seconds) before scaling in"
+  type        = number
+}
+
+variable "ecs_scale_out_cooldown" {
+  description = "Cooldown period (in seconds) before scaling out"
+  type        = number
+}
