@@ -1,4 +1,4 @@
-# nat.tf
+# /terraform/modules/networking/nat.tf
 # Allocate an Elastic IP for NAT
 resource "aws_eip" "et_modular_nat_eip" {
     tags = {

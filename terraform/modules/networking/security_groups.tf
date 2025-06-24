@@ -1,4 +1,4 @@
-# security_groups.tf
+# /terraform/modules/networking/security_groups.tf
 resource "aws_security_group" "alb_sg" {
   name        = "alb-sg"
   description = "Allow HTTP and HTTPS traffic from the internet"

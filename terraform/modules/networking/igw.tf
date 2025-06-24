@@ -1,4 +1,4 @@
-# igw.tf
+# /terraform/modules/networking/igw.tf
 resource "aws_internet_gateway" "et_modular_gw" {
   vpc_id = aws_vpc.et_modular_vpc.id
 }

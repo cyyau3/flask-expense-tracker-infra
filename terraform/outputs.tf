@@ -13,3 +13,7 @@ output "ecs_task_execution_role_arn" {
   value       = module.iam.ecs_task_execution_role_arn
   description = "IAM Role ARN for ECS Task Execution"
 }
+
+output "alb_dns" {
+  value = module.alb.alb_dns_name
+}

@@ -1,4 +1,4 @@
-# outputs.tf
+# /terraform/modules/networking/outputs.tf
 output "vpc_id" {
   description = "The ID of the VPC"
   value = aws_vpc.et_modular_vpc.id
@@ -17,4 +17,9 @@ output "private_subnet_ids" {
 output "nat_gateway_id" {
   description = "The IDs of the NAT Gateway"
   value = aws_nat_gateway.et_modular_nat_gw.id
+}
+
+output "alb_sg" {
+  description = "Security Group ID for ALB"
+  value = aws_security_group.alb_sg.id
 }

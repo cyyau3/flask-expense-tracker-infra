@@ -48,3 +48,8 @@ variable "project_name" {
   description = "The project name for tagging and resource naming"
   type        = string
 }
+
+variable "acm_certificate_arn" {
+  description = "ARN of the ACM certificate for HTTPS listener"
+  type        = string
+}

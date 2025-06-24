@@ -1,4 +1,4 @@
-# subnets.tf
+# /terraform/modules/networking/subnets.tf
 resource "aws_subnet" "et_modular_public_subnet_1" {
   vpc_id     = aws_vpc.et_modular_vpc.id
   cidr_block = var.public_subnet_cidr_block_1

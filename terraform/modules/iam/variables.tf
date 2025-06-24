@@ -1,4 +1,4 @@
-# iam/variables.tf
+# /terraform/modules/iam/variables.tf
 variable "project_name" {
   description = "Name of the project for naming IAM roles"
   type        = string

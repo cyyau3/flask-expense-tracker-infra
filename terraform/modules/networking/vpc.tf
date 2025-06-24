@@ -1,5 +1,4 @@
-# vpc.tf 
-# VPC
+# /terraform/modules/networking/vpc.tf 
 resource "aws_vpc" "et_modular_vpc" {
   cidr_block = var.vpc_cidr_block
   enable_dns_support = true
