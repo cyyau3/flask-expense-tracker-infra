@@ -29,3 +29,19 @@ module "alb" {
   acm_certificate_arn = var.acm_certificate_arn
   tags                = var.tags
 }
+
+module "ecs" {
+  source              = "./modules/ecs"
+  project_name        = var.project_name
+  region              = var.aws_region
+  tags                = var.tags
+
+  ecr_repo_url        = module.ecr.ecr_repository_url
+  execution_role_arn  = module.iam.ecs_task_execution_role_arn
+  task_role_arn       = module.iam.ecs_task_role_arn
+
+  private_subnet_ids  = module.networking.private_subnet_ids
+  security_group_ecs  = module.networking.ecs_sg
+  target_group_arn    = module.alb.alb_target_group_arn
+  listener_rule_arn   = module.alb.alb_listener_rule_arn
+}

@@ -23,3 +23,13 @@ output "alb_sg" {
   description = "Security Group ID for ALB"
   value = aws_security_group.alb_sg.id
 }
+
+output "ecs_sg" {
+  description = "Security Group ID for ECS"
+  value = aws_security_group.ecs_sg.id
+}
+
+output "rds_sg" {
+  description = "Security Group ID for RDS"
+  value = aws_security_group.rds_sg
+}
