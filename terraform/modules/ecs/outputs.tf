@@ -18,8 +18,3 @@ output "service_name" {
   value       = aws_ecs_service.this.name
   description = "Name of the ECS Service"
 }
-
-output "log_group_name" {
-  value       = aws_cloudwatch_log_group.ecs_log_group.name
-  description = "CloudWatch Log Group for ECS"
-}

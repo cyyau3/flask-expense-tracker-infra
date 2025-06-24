@@ -17,3 +17,8 @@ output "ecs_task_execution_role_arn" {
 output "alb_dns" {
   value = module.alb.alb_dns_name
 }
+
+output "cloudwatch_log_group_name" {
+  value       = module.cloudwatch.log_group_name
+  description = "CloudWatch log group name"
+}

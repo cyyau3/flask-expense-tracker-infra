@@ -14,3 +14,8 @@ variable "private_subnet_ids" {
 variable "security_group_ecs" {}
 variable "target_group_arn" {}
 variable "listener_rule_arn" {}
+
+variable "log_group_name" {
+  type        = string
+  description = "Name of the CloudWatch log group for ECS task logging"
+}

@@ -43,7 +43,9 @@ module "ecs" {
   private_subnet_ids  = module.networking.private_subnet_ids
   security_group_ecs  = module.networking.ecs_sg
   target_group_arn    = module.alb.alb_target_group_arn
-  listener_rule_arn   = module.alb.alb_listener_rule_arn
+  listener_rule_arn  = module.alb.alb_listener_https_arn
+
+  log_group_name      = module.cloudwatch.log_group_name
 }
 
 module "secretsmanager" {
@@ -68,4 +70,11 @@ module "rds" {
   private_subnet_ids  = module.networking.private_subnet_ids
   security_group_rds  = module.networking.rds_sg
   db_identifier       = var.db_identifier
+}
+
+module "cloudwatch" {
+  source            = "./modules/cloudwatch"
+  project_name      = var.project_name
+  retention_in_days = 7
+  tags              = var.tags
 }
