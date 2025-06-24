@@ -16,6 +16,7 @@ expenses.db
 
 # Env file
 .env
+*.csv
 
 # Git and IDE
 .git/

@@ -3,6 +3,7 @@ venv/
 
 # Environment Variables
 .env
+*.csv
 
 # Python Cache and Bytecode
 __pycache__/
@@ -19,10 +20,6 @@ expenses.db
 .DS_Store
 .idea/
 .vscode/
-
-# AWS/ECS Infrastructure Files
-ecs-task-def.json
-ecs-trust-policy.json
 
 # Terraform state files
 terraform.tfstate
