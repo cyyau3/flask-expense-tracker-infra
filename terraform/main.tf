@@ -14,10 +14,20 @@ module "ecr" {
   name   = "flask-expense-tracker-ecr"
 }
 
+module "secretsmanager" {
+  source        = "./modules/secretsmanager"
+  project_name  = var.project_name
+  tags          = var.tags
+  secret_name   = var.secret_name
+  secret_string_json = var.secret_string_json
+}
+
 module "iam" {
   source       = "./modules/iam"
   project_name = var.project_name
   tags         = var.tags
+
+  secret_arn = module.secretsmanager.secret_arn
 }
 
 module "alb" {
@@ -48,14 +58,6 @@ module "ecs" {
   log_group_name      = module.cloudwatch.log_group_name
 
   secret_name = module.secretsmanager.secret_name
-}
-
-module "secretsmanager" {
-  source        = "./modules/secretsmanager"
-  project_name  = var.project_name
-  tags          = var.tags
-  secret_name   = var.secret_name
-  secret_string_json = var.secret_string_json
 }
 
 module "rds" {

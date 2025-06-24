@@ -8,3 +8,8 @@ variable "tags" {
   description = "Tags to apply to resources"
   type        = map(string)
 }
+
+variable "secret_arn" {
+  description = "Secret ARN for ECS task role access"
+  type        = string
+}

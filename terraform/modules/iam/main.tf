@@ -47,3 +47,21 @@ resource "aws_iam_role" "ecs_task_role" {
 
   tags = var.tags
 }
+
+resource "aws_iam_role_policy" "ecs_task_role_secrets_policy" {
+  name = "${var.project_name}-ecs-task-role-secrets-policy"
+  role = aws_iam_role.ecs_task_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = [
+          "secretsmanager:GetSecretValue"
+        ],
+        Resource = var.secret_arn
+      }
+    ]
+  })
+}
