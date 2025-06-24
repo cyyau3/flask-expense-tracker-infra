@@ -45,3 +45,27 @@ module "ecs" {
   target_group_arn    = module.alb.alb_target_group_arn
   listener_rule_arn   = module.alb.alb_listener_rule_arn
 }
+
+module "secretsmanager" {
+  source        = "./modules/secretsmanager"
+  project_name  = var.project_name
+  tags          = var.tags
+  secret_name   = var.secret_name
+  secret_string_json = var.secret_string_json
+}
+
+module "rds" {
+  source = "./modules/rds"
+
+  project_name        = var.project_name
+  instance_class   = var.db_instance_class
+  allocated_storage   = var.allocated_storage
+  engine = var.engine
+  engine_version      = var.engine_version
+  db_name             = var.db_name
+  db_username         = var.db_username
+  db_password         = var.db_password
+  private_subnet_ids  = module.networking.private_subnet_ids
+  security_group_rds  = module.networking.rds_sg
+  db_identifier       = var.db_identifier
+}

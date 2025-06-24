@@ -53,3 +53,55 @@ variable "acm_certificate_arn" {
   description = "ARN of the ACM certificate for HTTPS listener"
   type        = string
 }
+
+variable "secret_string_json" {
+  type        = string
+  description = "JSON string for the database credentials"
+}
+
+variable "secret_name" {
+  description = "Name of the secret to be stored in AWS Secrets Manager"
+  type        = string
+}
+
+variable "db_instance_class" {
+  description = "RDS instance type"
+  type        = string
+}
+
+variable "allocated_storage" {
+  description = "Allocated storage (GB)"
+  type        = number
+}
+
+variable "engine" {
+  description = "PostgreSQL"
+  type        = string
+}
+
+variable "engine_version" {
+  description = "PostgreSQL engine version"
+  type        = string
+}
+
+variable "db_name" {
+  description = "Initial database name"
+  type        = string
+}
+
+variable "db_username" {
+  description = "Master username"
+  type        = string
+  sensitive   = true
+}
+
+variable "db_password" {
+  description = "Master password"
+  type        = string
+  sensitive   = true
+}
+
+variable "db_identifier" {
+  description = "RDS instance identifier"
+  type        = string
+}

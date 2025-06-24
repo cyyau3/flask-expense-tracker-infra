@@ -31,5 +31,5 @@ output "ecs_sg" {
 
 output "rds_sg" {
   description = "Security Group ID for RDS"
-  value = aws_security_group.rds_sg
+  value = aws_security_group.rds_sg.id
 }
