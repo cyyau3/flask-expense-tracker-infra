@@ -1,3 +1,6 @@
+# Near the top
+ENV BUILD_VERSION=20240624-1
+
 # Use the official Python image from DockerHub
 FROM python:3.11-slim
 
