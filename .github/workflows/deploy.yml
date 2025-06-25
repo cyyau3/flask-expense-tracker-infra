@@ -3,7 +3,7 @@ name: CI/CD to AWS ECS
 on:
   push:
     branches:
-      - feature/ci-cd
+      - main
 
 jobs:
   deploy:
