@@ -25,5 +25,6 @@ output "alb_target_group_arn" {
 }
 
 output "alb_zone_id" {
+  description = "Zone ID of the ALB"
   value = aws_lb.this.zone_id
 }

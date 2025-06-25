@@ -1,9 +1,6 @@
 # Use the official Python image from DockerHub
 FROM python:3.11-slim
 
-# Near the top
-ENV BUILD_VERSION=20240624-1
-
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1

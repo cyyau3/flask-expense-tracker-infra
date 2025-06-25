@@ -1,7 +1,14 @@
+# root/variables.tf
+# General Configuration
 variable "aws_region" {
   description = "AWS region to deploy resources"
   type        = string
   default     = "us-east-2"
+}
+
+variable "project_name" {
+  description = "The project name for tagging and resource naming"
+  type        = string
 }
 
 variable "tags" {
@@ -14,6 +21,7 @@ variable "tags" {
   }
 }
 
+# Networking (VPC & Subnets)
 variable "vpc_cidr_block" {
     description = "CIDR block for the VPC"
     type = string
@@ -44,16 +52,13 @@ variable "private_subnet_cidr_block_2" {
     default = "10.0.102.0/24"
 }
 
-variable "project_name" {
-  description = "The project name for tagging and resource naming"
-  type        = string
-}
-
+# ACM/TLS Configuration
 variable "acm_certificate_arn" {
   description = "ARN of the ACM certificate for HTTPS listener"
   type        = string
 }
 
+# Secrets Manager
 variable "secret_string_json" {
   type        = string
   description = "JSON string for the database credentials"
@@ -64,6 +69,7 @@ variable "secret_name" {
   type        = string
 }
 
+# RDS
 variable "db_instance_class" {
   description = "RDS instance type"
   type        = string
@@ -75,7 +81,7 @@ variable "allocated_storage" {
 }
 
 variable "engine" {
-  description = "PostgreSQL"
+  description = "Database engine type"
   type        = string
 }
 
@@ -106,6 +112,7 @@ variable "db_identifier" {
   type        = string
 }
 
+# ECS Auto Scaling
 variable "ecs_min_capacity" {
   description = "Minimum number of ECS tasks to run"
   type        = number
@@ -131,6 +138,7 @@ variable "ecs_scale_out_cooldown" {
   type        = number
 }
 
+# Route 53 Custom Domain
 variable "route53_zone_id" {
   description = "The Route 53 hosted zone ID"
   type        = string

@@ -6,6 +6,7 @@ output "vpc_id" {
 
 output "secret_arn" {
   value = module.secretsmanager.secret_arn
+  description = "ARN of the Secrets Manager secret for DB credentials"
 }
 
 output "ecr_repository_url" {
@@ -20,6 +21,7 @@ output "ecs_task_execution_role_arn" {
 
 output "alb_dns" {
   value = module.alb.alb_dns_name
+  description = "DNS name of the Application Load Balancer"
 }
 
 output "cloudwatch_log_group_name" {
